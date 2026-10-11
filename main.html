@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Berries Army</title>
+<meta name="description" content="Hey, I'm Berries Army. I make videos on YouTube and build things on GitHub. Catch my latest video and what I've been up to lately.">
+<meta name="theme-color" content="#120816">
+<link rel="icon" href="https://github.com/BerriesArmy.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+  --bg: #120816;
+  --ink: #f7eef8;
+  --berry: #ff3385;
+  --blue: #7c7eff;
+  --soft: #24132b;
+  --muted: #b89dbf;
+  --line: #3b2046;
+  --display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -80px;
+  background: var(--ink);
+  color: #120816;
+  padding: 10px 16px;
+  border-radius: 8px;
+  z-index: 20;
+  text-decoration: none;
+}
+
+.skip:focus {
+  top: 16px;
+}
+
+.wrap {
+  width: min(1120px, 100% - 48px);
+  margin-inline: auto;
+}
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px max(24px, calc((100% - 1120px) / 2));
+  background: rgba(18, 8, 22, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+}
+
+.top nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.top nav a {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.top nav a:hover {
+  background: var(--soft);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 64px;
+  align-items: center;
+  padding-block: 80px 96px;
+}
+
+.hero-copy h1 {
+  margin: 0 0 28px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(3rem, 7.4vw, 6.25rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+.lead {
+  max-width: 34em;
+  margin: 0 0 36px;
+  font-size: 1.2rem;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 26px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--berry);
+  border-color: var(--berry);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #120816;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  background: var(--ink);
+  color: #120816;
+}
+
+.btn-light {
+  background: var(--soft);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn-light:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #120816;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--soft);
+  border: 4px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: 14px 14px 0 var(--berry);
+  overflow: hidden;
+  animation: settle 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translate(10px, 14px);
+    box-shadow: 0 0 0 var(--berry);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    box-shadow: 14px 14px 0 var(--berry);
+  }
+}
+
+.video-meta {
+  margin-top: 40px;
+}
+
+.video-meta h2 {
+  margin: 0 0 6px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.video-meta p {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.text-link {
+  font-weight: 700;
+  color: var(--berry);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.text-link:hover {
+  color: var(--ink);
+}
+
+.band {
+  padding-block: 96px;
+}
+
+.band-tint {
+  background: var(--soft);
+}
+
+.section-head {
+  max-width: 40rem;
+  margin-bottom: 48px;
+}
+
+.section-head h2,
+.hello h2 {
+  margin: 0 0 14px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.4vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.section-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+.projects,
+.feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 40px;
+  align-items: start;
+  padding: 30px 0;
+  border-top: 2px solid var(--line);
+}
+
+.project:last-child {
+  border-bottom: 2px solid var(--line);
+}
+
+.project h3 {
+  margin: 0 0 6px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.project h3 a {
+  text-decoration: none;
+  background: linear-gradient(var(--berry), var(--berry)) 0 100% / 0 3px no-repeat;
+  transition: background-size 0.25s ease, color 0.2s ease;
+}
+
+.project h3 a:hover {
+  color: var(--berry);
+  background-size: 100% 3px;
+}
+
+.project-main p {
+  margin: 0;
+  max-width: 38em;
+  color: var(--muted);
+}
+
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  padding-top: 8px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+.tag {
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--line);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.feed {
+  max-width: 44rem;
+  padding-left: 32px;
+  border-left: 3px solid var(--berry);
+}
+
+.feed-item {
+  position: relative;
+  padding-bottom: 32px;
+}
+
+.feed-item:last-child {
+  padding-bottom: 0;
+}
+
+.feed-item::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: 0.4em;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--berry);
+}
+
+.feed-line {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.feed-line a {
+  font-weight: 700;
+  color: var(--berry);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.feed-line a:hover {
+  color: var(--ink);
+}
+
+.feed-detail {
+  margin: 4px 0 0;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.feed-time {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.hello {
+  background: var(--berry);
+  color: #fff;
+}
+
+.hello .lead {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hello .btn-primary {
+  background: #120816;
+  border-color: #120816;
+  color: #fff;
+}
+
+.hello .btn-primary:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #120816;
+}
+
+.hello .btn-light {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.hello .btn-light:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #120816;
+}
+
+.hello :focus-visible {
+  outline-color: #fff;
+}
+
+.foot {
+  padding-block: 32px;
+  background: #0d0510;
+  color: rgba(247, 238, 248, 0.7);
+  font-size: 0.95rem;
+  border-top: 1px solid var(--line);
+}
+
+.foot-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.foot p {
+  margin: 0;
+}
+
+@media (max-width: 920px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+    padding-block: 48px 72px;
+  }
+
+  .frame {
+    box-shadow: 10px 10px 0 var(--berry);
+  }
+
+  .band {
+    padding-block: 72px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .top nav a {
+    padding: 6px 10px;
+  }
+
+  .project {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding-top: 0;
+    gap: 10px 16px;
+  }
+
+  .feed {
+    padding-left: 26px;
+  }
+
+  .feed-item::before {
+    left: -34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .frame {
+    animation: none;
+  }
+
+  .btn,
+  .project h3 a {
+    transition: none;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the good stuff</a>
+
+<header class="top">
+  <a class="brand" href="#top">
+    <img src="https://github.com/BerriesArmy.png" alt="My GitHub profile picture" width="44" height="44">
+    <span>Berries Army</span>
+  </a>
+  <nav aria-label="Main">
+    <a href="#video">Latest video</a>
+    <a href="#projects">Projects</a>
+    <a href="#activity">Activity</a>
+    <a href="#hello">Say hi</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top">
+    <div class="hero-copy">
+      <h1>Hey, I'm Berries Army.</h1>
+      <p class="lead">I make videos on YouTube and build things on GitHub. This is my little corner of the internet, and it keeps itself fresh, so whenever you stop by you'll see my newest upload and whatever I've been tinkering with lately.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://www.youtube.com/@berries-army" target="_blank" rel="noopener">Watch on YouTube</a>
+        <a class="btn btn-ghost" href="https://github.com/BerriesArmy" target="_blank" rel="noopener">See my GitHub</a>
+      </div>
+    </div>
+
+    <div class="hero-video" id="video">
+      <div class="frame">
+        <iframe id="player" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUL0dv_9VZHO6UhVw_gQVh4Q" title="My latest YouTube video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="video-meta">
+        <h2 id="video-title">My newest upload is playing up there</h2>
+        <p id="video-date">Grabbing the details for you.</p>
+        <a id="video-link" class="text-link" href="https://www.youtube.com/@berries-army/videos" target="_blank" rel="noopener">Browse all my videos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What I'm working on right now</h2>
+        <p>These are the projects I've touched most recently. The list pulls straight from GitHub, so it changes whenever I do.</p>
+      </div>
+      <ul class="projects" id="project-list" aria-live="polite">
+        <li class="note">Pulling my latest projects from GitHub.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band-tint" id="activity">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What I did lately</h2>
+        <p>A quick look at my most recent moves on GitHub, newest first.</p>
+      </div>
+      <ul class="feed" id="feed" aria-live="polite">
+        <li class="note">Checking what I've been up to.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band hello" id="hello">
+    <div class="wrap">
+      <h2>Come say hi</h2>
+      <p class="lead">If you like what you see, subscribing or following is the easiest way to keep up with me. And if you have an idea, a question, or just want to chat about something I made, drop a comment on a video or open an issue on one of my repos. I read them all.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://www.youtube.com/@berries-army?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a>
+        <a class="btn btn-light" href="https://github.com/BerriesArmy" target="_blank" rel="noopener">Follow on GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <p>Made by me and hosted on GitHub Pages. And style.css made by <a href="https://YallCode.github.io/YallaYCode">YallCode</a>!</p>
+    <p id="year"></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var GH_USER = 'BerriesArmy';
+  var CHANNEL_ID = 'UCL0dv_9VZHO6UhVw_gQVh4Q';
+  var FEED_URL = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
+
+  document.getElementById('year').textContent = 'Copyright ' + new Date().getFullYear() + ' Berries Army';
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function plural(n, word) {
+    return n + ' ' + word + (n === 1 ? '' : 's');
+  }
+
+  function timeAgo(dateString) {
+    var seconds = Math.max(0, Math.floor((Date.now() - new Date(dateString).getTime()) / 1000));
+    if (seconds < 60) return 'just now';
+    var minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return plural(minutes, 'minute') + ' ago';
+    var hours = Math.floor(minutes / 60);
+    if (hours < 24) return plural(hours, 'hour') + ' ago';
+    var days = Math.floor(hours / 24);
+    if (days < 30) return plural(days, 'day') + ' ago';
+    var months = Math.floor(days / 30);
+    if (months < 12) return plural(months, 'month') + ' ago';
+    return plural(Math.floor(days / 365), 'year') + ' ago';
+  }
+
+  function capitalize(word) {
+    return word ? word.charAt(0).toUpperCase() + word.slice(1) : '';
+  }
+
+  function firstLine(text, max) {
+    var line = String(text || '').split('\n')[0].trim();
+    return line.length > max ? line.slice(0, max - 3).trim() + '...' : line;
+  }
+
+  function getJSON(url) {
+    return fetch(url, { headers: { Accept: 'application/json' } }).then(function (res) {
+      if (!res.ok) {
+        var err = new Error('Request failed');
+        err.status = res.status;
+        throw err;
+      }
+      return res.json();
+    });
+  }
+
+  function showMessage(list, message) {
+    list.innerHTML = '';
+    list.appendChild(make('li', 'note', message));
+  }
+
+  function loadVideo() {
+    var url = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(FEED_URL);
+    getJSON(url).then(function (data) {
+      var item = data && data.items && data.items[0];
+      if (!item) throw new Error('No videos found');
+      var id = '';
+      try {
+        id = new URL(item.link).searchParams.get('v') || '';
+      } catch (e) {
+        id = '';
+      }
+      if (!id && item.guid) id = String(item.guid).split(':').pop();
+      if (id) {
+        document.getElementById('player').src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id);
+      }
+      document.getElementById('video-title').textContent = item.title;
+      document.getElementById('video-date').textContent = 'Posted ' + timeAgo(item.pubDate.replace(' ', 'T') + 'Z');
+      var link = document.getElementById('video-link');
+      link.href = item.link;
+      link.textContent = 'Watch it on YouTube';
+    }).catch(function () {
+      document.getElementById('video-date').textContent = 'I couldn\'t grab the title this time, but the player still shows my newest upload.';
+    });
+  }
+
+  function loadProjects() {
+    var list = document.getElementById('project-list');
+    var url = 'https://api.github.com/users/' + GH_USER + '/repos?sort=pushed&direction=desc&per_page=30';
+    getJSON(url).then(function (repos) {
+      var picks = repos.filter(function (repo) { return !repo.fork; }).slice(0, 6);
+      if (!picks.length) {
+        showMessage(list, 'Nothing public here yet, but something is probably cooking. Check back soon.');
+        return;
+      }
+      list.innerHTML = '';
+      picks.forEach(function (repo) {
+        var item = make('li', 'project');
+        var main = make('div', 'project-main');
+        var title = make('h3');
+        var link = make('a', '', repo.name);
+        link.href = repo.html_url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        title.appendChild(link);
+        main.appendChild(title);
+        main.appendChild(make('p', '', repo.description || "No description yet. I'm still figuring this one out."));
+        var meta = make('div', 'project-meta');
+        if (repo.language) meta.appendChild(make('span', 'tag', repo.language));
+        meta.appendChild(make('span', '', 'Updated ' + timeAgo(repo.pushed_at)));
+        if (repo.stargazers_count > 0) meta.appendChild(make('span', '', plural(repo.stargazers_count, 'star')));
+        item.appendChild(main);
+        item.appendChild(meta);
+        list.appendChild(item);
+      });
+    }).catch(function (err) {
+      if (err.status === 403) {
+        showMessage(list, 'GitHub is asking me to slow down for a bit. Try again in a little while, or head to my GitHub profile to see everything.');
+      } else {
+        showMessage(list, 'I couldn\'t load my projects just now. Head over to my GitHub profile to see them all.');
+      }
+    });
+  }
+
+  function describe(ev) {
+    var p = ev.payload || {};
+    switch (ev.type) {
+      case 'PushEvent': {
+        var count = p.size || (p.commits && p.commits.length) || 1;
+        var last = p.commits && p.commits.length ? p.commits[p.commits.length - 1].message : '';
+        return { text: 'Pushed ' + plural(count, 'update') + ' to ', detail: firstLine(last, 90) };
+      }
+      case 'CreateEvent':
+        if (p.ref_type === 'repository') return { text: 'Started a brand new repo called ', detail: firstLine(p.description, 90) };
+        return { text: 'Created a new ' + (p.ref_type || 'branch') + ' in ', detail: '' };
+      case 'DeleteEvent':
+        return { text: 'Cleaned up a ' + (p.ref_type || 'branch') + ' in ', detail: '' };
+      case 'WatchEvent':
+        return { text: 'Starred ', detail: '' };
+      case 'ForkEvent':
+        return { text: 'Forked ', detail: '' };
+      case 'IssuesEvent':
+        return { text: capitalize(p.action) + ' an issue in ', detail: firstLine(p.issue && p.issue.title, 90) };
+      case 'IssueCommentEvent':
+        return { text: 'Commented on an issue in ', detail: firstLine(p.issue && p.issue.title, 90) };
+      case 'PullRequestEvent': {
+        var merged = p.pull_request && p.pull_request.merged;
+        return {
+          text: (merged ? 'Merged' : capitalize(p.action)) + ' a pull request in ',
+          detail: firstLine(p.pull_request && p.pull_request.title, 90)
+        };
+      }
+      case 'PullRequestReviewEvent':
+        return { text: 'Reviewed a pull request in ', detail: firstLine(p.pull_request && p.pull_request.title, 90) };
+      case 'ReleaseEvent':
+        return { text: 'Published a release in ', detail: firstLine(p.release && (p.release.name || p.release.tag_name), 90) };
+      case 'PublicEvent':
+        return { text: 'Made this repo public: ', detail: '' };
+      default:
+        return { text: 'Did a little something in ', detail: '' };
+    }
+  }
+
+  function loadActivity() {
+    var list = document.getElementById('feed');
+    var url = 'https://api.github.com/users/' + GH_USER + '/events/public?per_page=30';
+    getJSON(url).then(function (events) {
+      var recent = events.slice(0, 8);
+      if (!recent.length) {
+        showMessage(list, "It's been quiet on GitHub lately. Check back soon, I'm probably planning something.");
+        return;
+      }
+      list.innerHTML = '';
+      recent.forEach(function (ev) {
+        var info = describe(ev);
+        var item = make('li', 'feed-item');
+        var line = make('p', 'feed-line', info.text);
+        var repo = make('a', '', ev.repo.name.replace(GH_USER + '/', ''));
+        repo.href = 'https://github.com/' + ev.repo.name;
+        repo.target = '_blank';
+        repo.rel = 'noopener';
+        line.appendChild(repo);
+        item.appendChild(line);
+        if (info.detail) item.appendChild(make('p', 'feed-detail', info.detail));
+        var time = make('time', 'feed-time', timeAgo(ev.created_at));
+        time.dateTime = ev.created_at;
+        item.appendChild(time);
+        list.appendChild(item);
+      });
+    }).catch(function (err) {
+      if (err.status === 403) {
+        showMessage(list, 'GitHub is asking me to slow down for a bit. Try again in a little while, or head to my GitHub profile to see everything.');
+      } else {
+        showMessage(list, 'I couldn\'t load my recent activity just now. My GitHub profile has the full story.');
+      }
+    });
+  }
+
+  loadVideo();
+  loadProjects();
+  loadActivity();
+})();
+</script>
+</body>
+</html>
